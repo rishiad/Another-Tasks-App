@@ -1,3 +1,3 @@
-# not fancy todo
+# no fancy todo
 
 its a todo app
