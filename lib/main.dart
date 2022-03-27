@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:todo/app/app.locator.dart';
 import 'package:todo/app/app.router.dart';
+import 'package:todo/ui/constants/color_constants.dart';
 import 'ui/views/init_view.dart';
 import 'app/app.router.dart';
 void main() {
@@ -15,8 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Todo',
       theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: ColorConstants.sharkBackgroundColor
       ),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,

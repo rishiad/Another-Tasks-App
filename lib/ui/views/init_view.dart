@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:stacked/stacked.dart';
-import '../widgets/checkbox.dart';
+import 'package:todo/ui/constants/color_constants.dart';
+import 'package:todo/ui/widgets/task.dart';
 import '../../core/viewmodels/views/init_viewmodel.dart';
 
 class InitScreen extends StatelessWidget {
   const InitScreen({Key? key}) : super(key: key);
+
   @override
+  
   Widget build(BuildContext context) {
     return ViewModelBuilder<InitViewModel>.reactive(
       viewModelBuilder: () => InitViewModel(),
@@ -16,22 +18,23 @@ class InitScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: model.move,
           ),
-          body: Center(
+          body: Padding(
+            padding: EdgeInsets.only(left: 20, top: 50),
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.all(8),
-              children: const <Widget>[
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Todo',
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                    ),
-                   ),
+              children:  <Widget>[
+                Text(
+                  model.title,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
                 ),
-                CheckboxWidget()
+               const Task(
+                  title: 'Task 1',
+                )
               ],
             ),
           )),
