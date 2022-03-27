@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:todo/app/app.locator.dart';
-import 'package:todo/app/app.router.dart';
-import 'package:todo/ui/constants/color_constants.dart';
+import 'package:Tasks/app/app.locator.dart';
+import 'package:Tasks/app/app.router.dart';
+import 'package:Tasks/ui/constants/color_constants.dart';
 import 'ui/views/init_view.dart';
 import 'app/app.router.dart';
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Todo',
+      title: 'Tasks',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorConstants.sharkBackgroundColor
       ),
@@ -24,4 +24,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// make todo app
+// make Tasks app

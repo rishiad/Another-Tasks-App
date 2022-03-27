@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:todo/ui/constants/color_constants.dart';
-import 'package:todo/ui/widgets/task.dart';
+import 'package:Tasks/ui/constants/color_constants.dart';
+import 'package:Tasks/ui/widgets/task.dart';
 import '../../core/viewmodels/views/init_viewmodel.dart';
 
 class InitScreen extends StatelessWidget {
