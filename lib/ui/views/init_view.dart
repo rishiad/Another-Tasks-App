@@ -1,3 +1,4 @@
+import 'package:Tasks/ui/widgets/calander.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:Tasks/ui/constants/color_constants.dart';
@@ -34,7 +35,13 @@ class InitScreen extends StatelessWidget {
                 ),
                const Task(
                   title: 'Task 1',
-                )
+                ),
+                const Calender(
+                  title: 'Select date',
+                  cancleText: 'Cancel',
+                  confirmText: 'Confirm',
+                
+                ),
               ],
             ),
           )),
