@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -16,10 +15,10 @@ import '../ui/views/task_detail_view.dart';
 
 class Routes {
   static const String initScreen = '/';
-  static const String secondTestScreen = '/second-test-screen';
+  static const String taskDetailScreen = '/task-detail-screen';
   static const all = <String>{
     initScreen,
-    secondTestScreen,
+    taskDetailScreen,
   };
 }
 
@@ -28,7 +27,7 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.initScreen, page: InitScreen),
-    RouteDef(Routes.secondTestScreen, page: TaskDetailScreen),
+    RouteDef(Routes.taskDetailScreen, page: TaskDetailScreen),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -40,7 +39,7 @@ class StackedRouter extends RouterBase {
       );
     },
     TaskDetailScreen: (data) {
-      return CupertinoPageRoute<dynamic>(
+      return MaterialPageRoute<dynamic>(
         builder: (context) => const TaskDetailScreen(),
         settings: data,
       );
