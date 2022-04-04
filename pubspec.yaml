@@ -38,7 +38,11 @@ dependencies:
   stacked: ^2.3.0
   stacked_services:
   intl: ^0.17.0
+  uuid:
+  hive: 
+  hive_flutter: 
 dev_dependencies:
+  hive_generator: ^1.1.2
   build_runner:
   stacked_generator:
   flutter_test:

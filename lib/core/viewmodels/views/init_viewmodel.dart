@@ -18,7 +18,7 @@ class InitViewModel extends BaseModel {
               .format(DateTime.now()); 
   String get title => _title;
   void move() {
-    _navigationService.navigateTo(Routes.secondTestScreen);
+    _navigationService.navigateTo(Routes.taskDetailScreen);
   }
 
     // get today's day and month as text

@@ -1,3 +1,4 @@
+import 'package:Tasks/core/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:Tasks/app/app.locator.dart';
@@ -7,6 +8,7 @@ import 'ui/views/init_view.dart';
 import 'app/app.router.dart';
 void main() {
   setupLocator();
+  initalizeDatabaseService();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
  @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tasks',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorConstants.sharkBackgroundColor
