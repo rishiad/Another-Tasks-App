@@ -17,7 +17,7 @@ class ColorConstants {
   static Color boulderTypographyColor = hexToColor('#797979');
   static Color scarpaflowTypographyColor = hexToColor('#575767');
   static Color frenchgrayTypographyColor = hexToColor('#B9B9BE');
-  static Color altoTypographyColor = hexToColor('#D0D0D0');
+  static Color altoTypographyColor = const Color.fromARGB(255, 208, 208, 208);
   static Color altolightTypographyColor = hexToColor('#DADADA');
   // App Colors 
   static Color sharkBackgroundColor = hexToColor('#282D35');
