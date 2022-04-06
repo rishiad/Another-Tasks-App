@@ -1,4 +1,4 @@
-import 'package:stacked/stacked.dart';
+import 'package:Tasks/core/services/database_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:Tasks/app/app.router.dart';
 import '../../../app/app.locator.dart';
@@ -11,21 +11,38 @@ String formattedDate = DateFormat('ddd, mmmm').format(now);
 
 class InitViewModel extends BaseModel {
   final _navigationService = locator<NavigationService>();
-
-  final String _title =  DateFormat.MMMMd()  
-               
-              // displaying formatted date
-              .format(DateTime.now()); 
+  final String _title =  DateFormat.MMMMd().format(DateTime.now()); 
+  List _tasks = [];
   String get title => _title;
+  List get tasks => _tasks;
+  int _counter = 0;
   void move() {
     _navigationService.navigateTo(Routes.taskDetailScreen);
   }
 
-    // get today's day and month as text
-    // and set it to the title
-    // Eg: "Today is Monday, May"
+  InitViewModel() {
+    setBusy(true);
+    _tasks = dataStore.getTaskList();
+    setBusy(false);
+  }
 
+  void addTask(){
+    _counter++;
+    TaskCRUDMethods().createTask(task: Task.create(title: "test $_counter"));
+    _tasks = dataStore.getTaskList();
+    notifyListeners();
+  }
 
+   deleteTask(id){
+    TaskCRUDMethods().deleteTask(id: id);
+    _tasks = dataStore.getTaskList();
+    notifyListeners();
+  }
 
+  checkTask(id, isCompleted){
+    TaskCRUDMethods().checkTask(id: id, isCompleted: isCompleted);
+    _tasks = dataStore.getTaskList();
+    notifyListeners();
+  }
 }
   

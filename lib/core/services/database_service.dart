@@ -33,7 +33,7 @@ class Task extends HiveObject{
 initalizeDatabaseService() async {
   await Hive.initFlutter();
   Hive.registerAdapter<Task>(TaskAdapter());  
-  await Hive.openBox(taskBoxName);
+  await Hive.openBox<Task>(taskBoxName);
 }
 
 class TaskCRUDMethods {
@@ -41,6 +41,7 @@ class TaskCRUDMethods {
 
   Future<void> createTask({required Task task})async{
     await box.put(task.id, task);
+    print("chucked it in");
   }
 
   Future<Task?> getTask({required String id})async{
@@ -51,12 +52,29 @@ class TaskCRUDMethods {
     await task.save();
   }
 
-    Future<void> deleteTask({required Task task})async{
-    await task.delete();
+    Future<void> deleteTask({required id} )async{
+    await box.delete(id);
+  }
+
+  Future<void> checkTask({required id, required bool isCompleted})async{
+    final task = await getTask(id: id);
+    task!.isCompleted = isCompleted;
+    if (!isCompleted) {
+      print("task is not completed: ${task.title}");
+    } else {
+      print("task is completed: ${task.title}");
+      
+    }
+    await updateTask(task: task);
   }
 
   ValueListenable<Box<Task>> listenToTask() {
     return box.listenable();
+  }
+
+  List<Task> getTaskList()  {
+    final tasks =  box.values.toList();
+    return tasks;
   }
 }
 
