@@ -3,36 +3,54 @@ import 'package:flutter/material.dart';
 bool isChecked = false;
 
 class Task extends StatefulWidget {
-  const Task({Key? key, required this.title}) : super(key: key);
+  const Task({Key? key, required this.title, required this.id, required this.deleteTask, required this.checkTask}) : super(key: key);
   final String title;
+  final String id;
+  final Function deleteTask;
+  final Function checkTask;
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
   bool isChecked = false;
+  get _id => widget.id;
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
       return Colors.red;
     }
 
-    return ListTile(
-      title: Text(
-        widget.title,
-        style: TextStyle(
-          color: Colors.white,
-          decoration: isChecked ? TextDecoration.lineThrough : null,
+    return Dismissible(
+      key: Key(widget.id),
+      onDismissed: (direction) {
+        print("dismissed ${widget.title}");
+        widget.deleteTask(_id);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Task Deleted"), duration: Duration(seconds: 1)));
+      },
+      child: ListTile(
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Colors.white,
+            decoration: isChecked ? TextDecoration.lineThrough : null,
+          ),
         ),
-      ),
-      trailing: Checkbox(
-        fillColor: MaterialStateProperty.resolveWith(getColor),
-        value: isChecked,
-        onChanged: (bool? value) {
-          setState(() {
-            isChecked = value!;
-          });
-        },
+        trailing: Checkbox(
+          fillColor: MaterialStateProperty.resolveWith(getColor),
+          value: isChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isChecked = value!;
+            });
+            widget.checkTask(_id, value);
+            if (value == true) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Task Completed"), duration: Duration(seconds: 1)));
+            }
+          
+            }
+        
+        ),
       ),
     );
   }
