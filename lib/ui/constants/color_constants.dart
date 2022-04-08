@@ -20,8 +20,8 @@ class ColorConstants {
   static Color altoTypographyColor = const Color.fromARGB(255, 208, 208, 208);
   static Color altolightTypographyColor = hexToColor('#DADADA');
   // App Colors 
-  static Color sharkBackgroundColor = hexToColor('#282D35');
-  static Color dodgerblueAppColor = hexToColor('#1294F2');
+  static Color sharkBackgroundColor = const Color.fromARGB(255, 40, 45, 53);
+  static Color dodgerblueAppColor = const Color.fromARGB(255, 18, 148, 242);
   static Color blueribbonAppColor = hexToColor('#2E5CFF');
   static Color punchAppColor = hexToColor('#DB4437');
   static Color darkwoodsmokeAppColor = hexToColor('#141419');
