@@ -1,6 +1,6 @@
-import 'package:Tasks/core/services/database_service.dart';
+import 'package:tasks/core/services/database_service.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:Tasks/app/app.router.dart';
+import 'package:tasks/app/app.router.dart';
 import '../../../app/app.locator.dart';
 import '../base_model.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +17,11 @@ class InitViewModel extends BaseModel {
   List get tasks => _tasks;
   int _counter = 0;
   void move() {
-    _navigationService.navigateTo(Routes.taskDetailScreen);
+    _navigationService.navigateTo(Routes.taskDetailScreen)?.then((value) => {
+      setBusy(true),
+    _tasks = dataStore.getTaskList(),
+    setBusy(false)
+    });
   }
 
   InitViewModel() {
