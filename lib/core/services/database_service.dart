@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -41,7 +40,6 @@ class TaskCRUDMethods {
 
   Future<void> createTask({required Task task})async{
     await box.put(task.id, task);
-    print("chucked it in");
   }
 
   Future<Task?> getTask({required String id})async{
@@ -60,50 +58,16 @@ class TaskCRUDMethods {
     final task = await getTask(id: id);
     task!.isCompleted = isCompleted;
     if (!isCompleted) {
-      print("task is not completed: ${task.title}");
-    } else {
-      print("task is completed: ${task.title}");
-      
     }
     await updateTask(task: task);
-  }
-
-  ValueListenable<Box<Task>> listenToTask() {
-    return box.listenable();
   }
 
   List<Task> getTaskList()  {
     final tasks =  box.values.toList();
     return tasks;
   }
+
+  bool taskStatus(Task task) {
+    return task.isCompleted;
+  } 
 }
-
-// createTask(String taskName, String category) async {
-//   final box = await Hive.openBox(task);
-//   box.put(taskName, false);
-// }
-
-// createNestedTask(String taskName, String nestedTaskName) async {
-//   final box = await Hive.openBox(task);
-//   box.put(taskName, nestedTaskName);
-// }
-
-// getListOfTasks() async {
-//   final box = await Hive.openBox(task);
-//   return box.keys.toList();
-// }
-
-// getNestedTask(String taskName) async {
-//   final box = await Hive.openBox(task);
-//   return box.get(taskName);
-// }
-
-// deleteTask(String taskName) async {
-//   final box = await Hive.openBox(task);
-//   box.delete(taskName);
-// }
-
-// deleteNestedTask(String taskName, String nestedTaskName) async {
-//   final box = await Hive.openBox(task);
-//   box.delete(nestedTaskName);
-// }
