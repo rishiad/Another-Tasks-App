@@ -1,11 +1,9 @@
-import 'package:Tasks/core/services/database_service.dart';
+import 'package:tasks/core/services/database_service.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:Tasks/app/app.locator.dart';
-import 'package:Tasks/app/app.router.dart';
-import 'package:Tasks/ui/constants/color_constants.dart';
-import 'ui/views/init_view.dart';
+import 'package:tasks/app/app.locator.dart';
+import 'package:tasks/app/app.router.dart';
+import 'package:tasks/ui/constants/color_constants.dart';
 import 'app/app.router.dart';
 void main() async {
   setupLocator();
@@ -19,16 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
   // TaskCRUDMethods().createTask(task: Task.create(title: "test 5"));
   final newTextTheme = Theme.of(context).textTheme.apply(
-  bodyColor: Color.fromARGB(255, 208, 208, 208),  
+  bodyColor: const Color.fromARGB(255, 208, 208, 208),  
 );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tasks',
+      title: 'tasks',
       theme: ThemeData(
         textTheme: newTextTheme,
         scaffoldBackgroundColor: ColorConstants.sharkBackgroundColor,
-        primaryColor: ColorConstants.altolightTypographyColor,
       ),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
@@ -36,4 +33,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// make Tasks app
+// make tasks app

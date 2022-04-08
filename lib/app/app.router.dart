@@ -40,7 +40,7 @@ class StackedRouter extends RouterBase {
     },
     TaskDetailScreen: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const TaskDetailScreen(),
+        builder: (context) =>  TaskDetailScreen(),
         settings: data,
       );
     },
