@@ -1,4 +1,4 @@
-import 'package:Tasks/core/services/database_service.dart';
+import 'package:tasks/core/services/database_service.dart';
 import 'package:flutter/material.dart';
 class BaseModel extends ChangeNotifier {
   final TaskCRUDMethods dataStore = TaskCRUDMethods();

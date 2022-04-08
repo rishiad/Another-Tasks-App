@@ -5,8 +5,9 @@ import '../../../app/app.router.dart';
 import '../base_model.dart';
 
 class CreateTaskViewModel extends BaseModel {
-    final _navigationService = locator<NavigationService>();
-
+  final _navigationService = locator<NavigationService>();
+  late String _taskTitle;
+  String get taskTitle => _taskTitle;
   String title = 'Task Detail Page';
     void move() {
     _navigationService.navigateTo(Routes.initScreen);
