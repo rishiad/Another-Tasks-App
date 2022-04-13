@@ -21,6 +21,8 @@ class TaskAdapter extends TypeAdapter<Task> {
       title: fields[1] as String,
       createdAt: fields[2] as DateTime,
       isCompleted: fields[3] as bool,
+      dueDate: fields[4] as DateTime?,
+      notificationID: fields[5] as int?,
     );
   }
 

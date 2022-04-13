@@ -15,7 +15,6 @@ class InitViewModel extends BaseModel {
   List _tasks = [];
   String get title => _title;
   List get tasks => _tasks;
-  int _counter = 0;
   void move() {
     _navigationService.navigateTo(Routes.taskDetailScreen)?.then((value) => {
       setBusy(true),
@@ -30,12 +29,6 @@ class InitViewModel extends BaseModel {
     setBusy(false);
   }
 
-  void addTask(){
-    _counter++;
-    TaskCRUDMethods().createTask(task: Task.create(title: "test $_counter"));
-    _tasks = dataStore.getTaskList();
-    notifyListeners();
-  }
 
    deleteTask(id){
     TaskCRUDMethods().deleteTask(id: id);
@@ -48,5 +41,7 @@ class InitViewModel extends BaseModel {
     _tasks = dataStore.getTaskList();
     notifyListeners();
   }
+
+
 }
   

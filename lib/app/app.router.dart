@@ -8,10 +8,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/views/init_view.dart';
-import '../ui/views/task_detail_view.dart';
+import '../ui/views/create_task_view.dart';
 
 class Routes {
   static const String initScreen = '/';
@@ -39,10 +38,23 @@ class StackedRouter extends RouterBase {
       );
     },
     TaskDetailScreen: (data) {
+      var args = data.getArgs<TaskDetailScreenArguments>(
+        orElse: () => TaskDetailScreenArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) =>  TaskDetailScreen(),
+        builder: (context) => TaskDetailScreen(key: args.key),
         settings: data,
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// TaskDetailScreen arguments holder class
+class TaskDetailScreenArguments {
+  final Key? key;
+  TaskDetailScreenArguments({this.key});
 }

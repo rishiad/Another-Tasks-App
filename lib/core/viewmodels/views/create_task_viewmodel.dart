@@ -1,20 +1,27 @@
-import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:tasks/ui/views/create_task_view.form.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
-import '../base_model.dart';
+import '../../services/database_service.dart';
 
-class CreateTaskViewModel extends BaseModel {
+class TaskDetailViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
-  late String _taskTitle;
-  String get taskTitle => _taskTitle;
-  String title = 'Task Detail Page';
-    void move() {
-    _navigationService.navigateTo(Routes.initScreen);
-    if (kDebugMode) {
-      print(dataStore);
-    }
-  }
-  
 
+  String title = 'Create Task Page';
+  void move() {
+    _navigationService.navigateTo(Routes.initScreen);
+  }
+
+  @override
+  void setFormStatus() {
+    // ignore: todo
+    // TODO: implement setFormStatus
+  }
+
+  addTask() {
+    DateTime parseDate = DateFormat("yyyy-MM-dd").parse(dueDateValue!);
+    TaskCRUDMethods().createTask(task: Task.create(title: titleValue ?? "", dueDate: parseDate));
+}
 }

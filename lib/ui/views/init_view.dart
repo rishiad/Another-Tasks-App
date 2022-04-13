@@ -7,6 +7,7 @@ import '../../core/viewmodels/views/init_viewmodel.dart';
 
 class InitScreen extends StatelessWidget {
   const InitScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<InitViewModel>.reactive(
