@@ -26,4 +26,3 @@ If you're using Notion, you can create a table of your tasks and sync it to your
 
 Finally, some todo apps let you share certain tasks or sub tasks with other people. This can be helpful if you're working on a project with someone else and need to keep track of who is doing what. It can also be helpful if you need to remember to do something for someone else, like pick up their dry cleaning.
 
-Overall, there are a lot of different ways to keep track of your todo list. By nesting tasks, categorizing tasks, geofencing tasks, and creating a notion table of your tasks, you can ensure that you never forget anything important. And by sharing tasks with others, you can make sure that everyone is on the same page.
