@@ -6,6 +6,10 @@ The app is designed to make it easy for you to keep track of your tasks and to-d
 
 The app also integrates with Notion, so you can create a table of your tasks and to-dos, and sync it with the app. This way, you can keep track of your tasks from anywhere. And finally, you can share certain tasks or sub-tasks with others, so they can help you get them done.
 
+## Nesting Tasks:
+
+There are a few todo apps that let you nest tasks inside of other tasks, and this can be a great way to keep track of smaller tasks that are part of a larger project. For example, if you're working on a project that has a few different parts, you can create a task for each part and then nest smaller tasks inside of those. This can help you stay organized and make sure that you don't forget any of the smaller details.
+
 ## Categorizing Tasks:
 
 Categorizing tasks can also be helpful in keeping your todo list organized. For example, you might have a category for work tasks, personal tasks, and errands. This can help you quickly see what needs to be done and where your priorities lie. You can also use categories to group together similar tasks, which can be helpful if you need to do a lot of similar tasks at once.
