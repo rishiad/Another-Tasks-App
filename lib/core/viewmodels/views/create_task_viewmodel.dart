@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:tasks/core/models/task_model.dart';
 import 'package:tasks/ui/views/create_task_view.form.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';

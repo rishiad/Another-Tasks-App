@@ -1,52 +1,26 @@
 import 'dart:math';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:uuid/uuid.dart';
-
+import 'package:tasks/core/models/category_model.dart';
+import 'package:tasks/core/models/task_model.dart';
 part 'database_service.g.dart';
 
 const taskBoxName = 'tasks';
+const categoryBoxName = 'categories';
 Random random = Random();
 
-@HiveType(typeId: 0)
-class Task extends HiveObject {
-  Task(
-      {required this.id,
-      required this.title,
-      required this.createdAt,
-      required this.isCompleted,
-      required this.dueDate,
-      required this.notificationID});
-  @HiveField(0)
-  final String id;
-  @HiveField(1)
-  String title;
-  @HiveField(2)
-  DateTime createdAt;
-  @HiveField(3)
-  bool isCompleted;
-  @HiveField(4)
-  DateTime? dueDate;
-  @HiveField(5)
-  final int? notificationID;
-
-  factory Task.create({required String title, required DateTime dueDate}) =>
-      Task(
-          id: const Uuid().v1(),
-          title: title,
-          createdAt: DateTime.now(),
-          isCompleted: false,
-          dueDate: dueDate,
-          notificationID: random.nextInt(10000));
-}
 
 initalizeDatabaseService() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskAdapter());
   await Hive.openBox<Task>(taskBoxName);
+  await Hive.openBox<Category>(categoryBoxName);
 }
 
+genrateRandomColor()async {
+  return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+}
 class TaskCRUDMethods {
   final Box<Task> box = Hive.box<Task>(taskBoxName);
 
@@ -93,4 +67,31 @@ class TaskCRUDMethods {
   bool taskStatus(Task task) {
     return task.isCompleted;
   }
+
+}
+
+class CategoryCRUDMethods {
+  final Box<Category> box = Hive.box<Category>(categoryBoxName);
+
+  Future<void> createCategory({required Category category}) async {
+    await box.put(category.id, category);
+  }
+
+  Future<Category?> getCategory({required String id}) async {
+    return box.get(id);
+  }
+
+  Future<void> updateCategory({required Category category}) async {
+    await category.save();
+  }
+
+  Future<void> deleteCategory({required id, task}) async {
+    await box.delete(id);
+  }
+
+  List<Category> getCategoryList() {
+    final categories = box.values.toList();
+    return categories;
+  }
+
 }
