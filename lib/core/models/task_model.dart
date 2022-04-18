@@ -10,7 +10,9 @@ class Task extends HiveObject {
       required this.createdAt,
       required this.isCompleted,
       required this.dueDate,
-      required this.notificationID});
+      required this.notificationID, 
+      required this.categoryID,
+      required this.categoryTitle});
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -23,13 +25,19 @@ class Task extends HiveObject {
   DateTime? dueDate;
   @HiveField(5)
   final int? notificationID;
+  @HiveField(6)
+  String categoryID;
+  @HiveField(7)
+  String categoryTitle;
 
-  factory Task.create({required String title, required DateTime dueDate}) =>
+  factory Task.create({required String title, required DateTime dueDate, required String categoryID, required String categoryTitle}) =>
       Task(
           id: const Uuid().v1(),
           title: title,
           createdAt: DateTime.now(),
           isCompleted: false,
           dueDate: dueDate,
-          notificationID: random.nextInt(10000));
+          notificationID: random.nextInt(10000),
+          categoryID: categoryID,
+          categoryTitle: categoryTitle);
 }

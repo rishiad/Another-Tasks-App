@@ -14,18 +14,18 @@ void main() async {
   'resource://drawable/logo',
   [
     NotificationChannel(
-        channelGroupKey: 'basic_channel_group',
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
+        channelGroupKey: 'todo_notification_channel_group',
+        channelKey: 'todo_notification_channel',
+        channelName: 'Todo notifications',
+        channelDescription: 'Notification channel for todo',
         defaultColor: const Color.fromARGB(255, 177, 177, 177),
         ledColor: Colors.white)
   ],
   // Channel groups are only visual and are not required
   channelGroups: [
     NotificationChannelGroup(
-        channelGroupkey: 'basic_channel_group',
-        channelGroupName: 'Basic group')
+        channelGroupkey: 'todo_notification_channel_group',
+        channelGroupName: 'Todo group')
   ],
   debug: true
 );

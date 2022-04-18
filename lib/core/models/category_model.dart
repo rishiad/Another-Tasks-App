@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:tasks/core/services/database_service.dart';
 import 'package:uuid/uuid.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Category extends HiveObject {
   Category(
       {required this.id,
@@ -24,12 +25,12 @@ class Category extends HiveObject {
 
 
 
-  factory Category.create({required String title, required String taskId}) =>
+  factory Category.create({required String title}) =>
       Category(
           id: const Uuid().v1(),
           title: title,
           createdAt: DateTime.now(),
-          color: genrateRandomColor(),
-          tasksIds: [taskId]
+          color: Colors.amber.value.toRadixString(16),
+          tasksIds: []
 );  
 }

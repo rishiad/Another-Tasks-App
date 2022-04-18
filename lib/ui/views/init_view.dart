@@ -81,6 +81,7 @@ class InitScreen extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return Task(
                                   title: model.tasks[index].title,
+                                  category: model.tasks[index].categoryTitle,
                                   id: model.tasks[index].id,
                                   deleteTask: model.deleteTask,
                                   checkTask: model.checkTask,

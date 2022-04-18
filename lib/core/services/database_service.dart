@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tasks/core/models/category_model.dart';
 import 'package:tasks/core/models/task_model.dart';
+import 'package:uuid/uuid.dart';
 part 'database_service.g.dart';
 
 const taskBoxName = 'tasks';
@@ -14,6 +15,7 @@ Random random = Random();
 initalizeDatabaseService() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskAdapter());
+  Hive.registerAdapter(CategoryAdapter());
   await Hive.openBox<Task>(taskBoxName);
   await Hive.openBox<Category>(categoryBoxName);
 }
@@ -26,10 +28,11 @@ class TaskCRUDMethods {
 
   Future<void> createTask({required Task task}) async {
     await box.put(task.id, task);
+    print(task.categoryTitle);
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: task.notificationID!,
-          channelKey: 'basic_channel',
+          channelKey: 'todo_notification_channel',
           title: task.title,
           wakeUpScreen: true,
           category: NotificationCategory.Reminder,
@@ -49,7 +52,7 @@ class TaskCRUDMethods {
 
   Future<void> deleteTask({required id, task}) async {
     await box.delete(id);
-    await AwesomeNotifications().dismiss(task.notificationID);
+
   }
 
   Future<void> checkTask({required id, required bool isCompleted}) async {
@@ -73,8 +76,9 @@ class TaskCRUDMethods {
 class CategoryCRUDMethods {
   final Box<Category> box = Hive.box<Category>(categoryBoxName);
 
-  Future<void> createCategory({required Category category}) async {
+  Future<Category> createCategory({required Category category}) async {
     await box.put(category.id, category);
+    return category;
   }
 
   Future<Category?> getCategory({required String id}) async {
@@ -94,4 +98,15 @@ class CategoryCRUDMethods {
     return categories;
   }
 
+  Future<void> addTaskToCategory({required String categoryID, required Task task}) async {
+    final category = await getCategory(id: categoryID);
+    category!.taskIds.add(task.id);
+    await updateCategory(category: category);
+  }
+
+  getCategoryOfATask({required String taskID}) async {
+    final task = await TaskCRUDMethods().getTask(id: taskID);
+    final category = await getCategory(id: task?.categoryID ?? "");
+    return category;
+  }
 }

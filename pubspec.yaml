@@ -42,7 +42,8 @@ dependencies:
   hive: 
   hive_flutter: 
   flutter_svg: ^1.0.3
-  awesome_notifications: 
+  awesome_notifications:
+  flutter_chips_input: ^1.10.0 
 dev_dependencies:
   hive_generator: ^1.1.2
   build_runner:

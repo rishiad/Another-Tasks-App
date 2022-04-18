@@ -110,10 +110,36 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                                 },
                               ),
                               const Padding(padding: EdgeInsets.all(20)), 
-
+                              // Build a category dropdown
+                              DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  labelText: "Category",
+                                  labelStyle: TextStyle(
+                                      color: ColorConstants.altoTypographyColor
+                                          .withOpacity(.5)),
+                                  fillColor:
+                                      ColorConstants.sharkBackgroundColor,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    borderSide: const BorderSide(),
+                                  ),
+                                ),
+                                value: model.selectedCategory.isNotEmpty ? model.selectedCategory : null,
+                                items: model.categories.map((category) {
+                                  return DropdownMenuItem(
+                                    value: category,
+                                    child: Text(category),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  model.selectedCategory = value.toString();
+                                },
+                              ),
+const Padding(padding: EdgeInsets.all(20)), 
                               ElevatedButton(onPressed: ()async => {
                                 await model.addTask(),
-                                Navigator.pop(context)
+                                model.move
                               }, child: const Text("Add Task"), style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(ColorConstants.dodgerblueAppColor), minimumSize: MaterialStateProperty.all(const Size(150, 40))),),
                             ],
                           ),

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 bool isChecked = false;
 
 class Task extends StatefulWidget {
-  const Task({Key? key,required this.taskStatus, required this.title, required this.id, required this.deleteTask, required this.checkTask}) : super(key: key);
+   Task({Key? key,required this.taskStatus, required this.title, required this.category, required this.id, required this.deleteTask, required this.checkTask}) : super(key: key);
   final String title;
+  String category;
   final String id;
   final Function deleteTask;
   final Function checkTask;
@@ -50,6 +51,12 @@ class _TaskState extends State<Task> {
           
             }
         
+        ),
+        subtitle: Text(
+         widget.category,
+          style: TextStyle(
+            color: Colors.grey[500],
+          ),
         ),
       ),
     );
