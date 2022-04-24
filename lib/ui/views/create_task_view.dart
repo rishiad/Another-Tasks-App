@@ -5,18 +5,16 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:tasks/ui/constants/color_constants.dart';
 import '../../core/viewmodels/views/create_task_viewmodel.dart';
 import 'create_task_view.form.dart';
-@FormView(fields: [
-  FormTextField(name: 'title'),
-  FormDateField(name: 'dueDate')
-])
+
+@FormView(
+    fields: [FormTextField(name: 'title'), FormDateField(name: 'dueDate')])
 class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
-   TaskDetailScreen({Key? key}) : super(key: key);
+  TaskDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
     return ViewModelBuilder<TaskDetailViewModel>.reactive(
-      onModelReady: (model) => listenToFormUpdated(model),
+        onModelReady: (model) => listenToFormUpdated(model),
         viewModelBuilder: () => TaskDetailViewModel(),
         builder: (context, model, child) => Scaffold(
               body: Column(
@@ -53,6 +51,7 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                         child: Form(
                           child: Column(
                             children: [
+                              const Padding(padding: EdgeInsets.all(15)),
                               // Add Task Name
                               TextFormField(
                                 controller: titleController,
@@ -79,8 +78,10 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                                 controller: dateController,
                                 decoration: InputDecoration(
                                   labelText: "Task Due Date",
-                                  suffixIcon:  Icon(Icons.calendar_today, color: ColorConstants.dodgerblueAppColor,),
-                                  
+                                  suffixIcon: Icon(
+                                    Icons.calendar_today,
+                                    color: ColorConstants.dodgerblueAppColor,
+                                  ),
                                   labelStyle: TextStyle(
                                       color: ColorConstants.altoTypographyColor
                                           .withOpacity(.5)),
@@ -103,13 +104,14 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                                       firstDate: DateTime(1900),
                                       lastDate: DateTime(2100));
                                   if (date != null) {
-                                    dateController.text = DateFormat('yyyy-MM-dd').format(date);
+                                    dateController.text =
+                                        DateFormat('yyyy-MM-dd').format(date);
                                   } else {
                                     dateController.text = "";
                                   }
                                 },
                               ),
-                              const Padding(padding: EdgeInsets.all(20)), 
+                              const Padding(padding: EdgeInsets.all(20)),
                               // Build a category dropdown
                               DropdownButtonFormField(
                                 decoration: InputDecoration(
@@ -125,7 +127,9 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                                     borderSide: const BorderSide(),
                                   ),
                                 ),
-                                value: model.selectedCategory.isNotEmpty ? model.selectedCategory : null,
+                                value: model.selectedCategory.isNotEmpty
+                                    ? model.selectedCategory
+                                    : null,
                                 items: model.categories.map((category) {
                                   return DropdownMenuItem(
                                     value: category,
@@ -136,11 +140,43 @@ class TaskDetailScreen extends StatelessWidget with $TaskDetailScreen {
                                   model.selectedCategory = value.toString();
                                 },
                               ),
-const Padding(padding: EdgeInsets.all(20)), 
-                              ElevatedButton(onPressed: ()async => {
-                                await model.addTask(),
-                                model.move
-                              }, child: const Text("Add Task"), style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(ColorConstants.dodgerblueAppColor), minimumSize: MaterialStateProperty.all(const Size(150, 40))),),
+                              const Padding(padding: EdgeInsets.all(15)),
+
+                              TextFormField(
+                                controller: titleController,
+                                minLines:
+                                    6, // any number you need (It works as the rows for the textarea)
+                                keyboardType: TextInputType.multiline,
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  labelText: "Notes",
+                                  labelStyle: TextStyle(
+                                      color: ColorConstants.altoTypographyColor
+                                          .withOpacity(.5)),
+                                  fillColor:
+                                      ColorConstants.sharkBackgroundColor,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    borderSide: const BorderSide(),
+                                  ),
+                                ),
+                                onChanged: (value) {
+                                  model.notes = value.toString();
+                                },
+                              ),
+                              const Padding(padding: EdgeInsets.all(20)),
+                              ElevatedButton(
+                                onPressed: () async =>
+                                    {await model.addTask(), model.move},
+                                child: const Text("Add Task"),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            ColorConstants.dodgerblueAppColor),
+                                    minimumSize: MaterialStateProperty.all(
+                                        const Size(150, 40))),
+                              ),
                             ],
                           ),
                         ),
