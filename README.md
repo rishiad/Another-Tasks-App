@@ -6,6 +6,10 @@ The app is designed to make it easy for you to keep track of your tasks and to-d
 
 The app also integrates with Notion, so you can create a table of your tasks and to-dos, and sync it with the app. This way, you can keep track of your tasks from anywhere. And finally, you can share certain tasks or sub-tasks with others, so they can help you get them done.
 
+Task List           |  New Task                              | Task Details
+:-------------------------:|:-------------------------:|:----------------------------|
+![task](./assets/readme_image/Home.png)  |  ![](assets/readme_image/NewTask.png) | ![](assets/readme_image/AboutTask.png)
+
 ## Nesting Tasks:
 
 Nest Task lets you nest tasks inside of other tasks which is a great way to keep track of smaller tasks that are part of a larger project. For example, if you're working on a project that has a few different parts, you can create a task for each part and then nest smaller tasks inside of those. This can help you stay organized and make sure that you don't forget any of the smaller details.
