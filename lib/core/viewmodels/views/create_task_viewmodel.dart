@@ -13,6 +13,7 @@ class TaskDetailViewModel extends FormViewModel {
 
   String title = 'Create Task Page';
   String selectedCategory = "";
+  String notes = "";
   final List _categories = [
     "Work",
     "Home",
@@ -36,7 +37,7 @@ class TaskDetailViewModel extends FormViewModel {
     DateTime parseDate = DateFormat("yyyy-MM-dd").parse(dueDateValue!);
     var task;
      CategoryCRUDMethods().createCategory(category: Category.create(title: selectedCategory)).then((value)async => {
-    task = Task.create(title: titleValue ?? "", dueDate: parseDate, categoryID: value.id, categoryTitle: value.title),
+    task = Task.create(title: titleValue ?? "", dueDate: parseDate, categoryID: value.id, categoryTitle: value.title, notes: notes),
     await TaskCRUDMethods().createTask(task: task),
 
      CategoryCRUDMethods().addTaskToCategory(categoryID: value.id, task: task),

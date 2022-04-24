@@ -15,6 +15,7 @@ class TaskDetailViewModel extends BaseModel {
   String title =  ""; 
   String description =  ""; 
   String dueDate =  "";
+
   var _tasks;
   void move() {
     _navigationService.navigateTo(Routes.taskDetailScreen)?.then((value) => {
