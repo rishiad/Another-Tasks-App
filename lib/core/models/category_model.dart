@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tagging/flutter_tagging.dart';
 import 'package:hive/hive.dart';
 import 'package:tasks/core/services/database_service.dart';
 import 'package:uuid/uuid.dart';
@@ -33,4 +34,48 @@ class Category extends HiveObject {
           color: Colors.amber.value.toRadixString(16),
           tasksIds: []
 );  
+
+List <Object> get props => [id, title, createdAt, color, taskIds];
+
+  @override
+  String toJson() => '''
+    {
+      "id": "$id",
+      "title": "$title",
+      "createdAt": "$createdAt",
+      "color": "$color",
+      "taskIds": $taskIds
+    }'''; 
+}
+
+class CategoryTags extends Taggable {
+  CategoryTags(
+      {required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.color,
+      required tasksIds
+});
+
+  final String id;
+
+  String title;
+
+  DateTime createdAt;
+
+  String color;
+
+  List<String> taskIds = [];
+
+List <Object> get props => [id, title, createdAt, color, taskIds];
+
+  @override
+  String toJson() => '''
+    {
+      "id": "$id",
+      "title": "$title",
+      "createdAt": "$createdAt",
+      "color": "$color",
+      "taskIds": $taskIds
+    }'''; 
 }

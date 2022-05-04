@@ -15,10 +15,9 @@ class TaskDetailViewModel extends FormViewModel {
   String selectedCategory = "";
   String notes = "";
   final List _categories = [
-    "Work",
-    "Home",
-    "School",
-    "Grocery",
+    "High Priority",
+    "Medium Priority",
+    "Low Priority"
   ];
 
 
