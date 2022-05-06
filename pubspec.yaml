@@ -45,6 +45,8 @@ dependencies:
   awesome_notifications:
   flutter_chips_input: ^1.10.0 
   flutter_tagging: ^3.0.0
+  animations: ^2.0.2
+  flow_builder: ^0.0.6
 dev_dependencies:
   hive_generator: ^1.1.2
   build_runner:
