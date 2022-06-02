@@ -1,13 +1,13 @@
  import 'package:tasks/core/models/task_model.dart';
  
- class CreateTask extends Equatable {
+ class CreateTask {
      const CreateTask({
          required this.name,
          required this.categoryID,
          required this.dueDate,
          required this.priorityId,
          this.notes,
-         this.subTask 
+         this.subTasks 
      });
 
      final String name;
@@ -15,11 +15,11 @@
      final DateTime dueDate;
      final int priorityId;
      final String? notes; 
-     final Task? subTask;
+     final List<Task>? subTasks;
 
-    CreateTask.copyWith({
+    factory CreateTask.copyWith({
                 required String name, required String categoryId, 
-                required DateTime dueDate, int? priorityId,
+                required DateTime dueDate, required int priorityId,
                 String? notes, Task? subTask
                 }) {
                     return CreateTask(
@@ -28,10 +28,10 @@
                         dueDate: dueDate,
                         priorityId: priorityId,
                         notes : notes,
-                        subTask : [subtask]
+                        subTasks : [subTask!]
                         );
                     }
 
     @override
-    List<Object> get props => [name, categoryId, dueDate, priorityId, notes, subTask];
+    List<Object> get props => [name, categoryID, dueDate, priorityId, notes!, subTasks!];
  }
